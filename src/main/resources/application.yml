@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    url: jdbc:mysql://0.0.0.0:3306/ropulva_peripherals
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    
+  data:
+    redis:
+     host: localhost
+     port: 6379
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
+    
+ 
+
+  application:
+    name: ropulva_sidecars
+  
+server:
+ port: 8090
+ 
+ 
+security:
+  jwt:
+    token:
+      secret-key: ropulva100%
+      expire-length: 86400000 # 1 day 
+  ignored: /swagger-resources/**
