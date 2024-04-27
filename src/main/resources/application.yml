@@ -40,4 +40,4 @@ security:
 sms:
   userId: CCF0bw3z
   pwd: da497e9501ebba6cd8340d98ae6bc7228f76021be0395b708a89bf627369bc22
-  senderId: b611afb996655a94c8e942a823f1421de42bf8335d24ba1f84c437b2ab11ca27
+  environment: 1 # 1 production , 2 testing

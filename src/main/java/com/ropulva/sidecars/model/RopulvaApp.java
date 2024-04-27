@@ -24,4 +24,8 @@ public class RopulvaApp extends BaseEntity {
 	@NotNull
 	private String name;
 
+	@Column(name = "senderId")
+	@NotNull
+	private String senderId;
+
 }

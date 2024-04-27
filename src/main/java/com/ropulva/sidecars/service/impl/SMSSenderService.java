@@ -17,8 +17,8 @@ public class SMSSenderService implements ISMSSenderService {
 	@Value("${sms.pwd}")
 	private String pwd;
 
-	@Value("${sms.senderid}")
-	private String senderId;
+	@Value("${sms.environment}")
+	private String environment;
 
 	private final WebClient smsApiClient;
 
@@ -28,12 +28,17 @@ public class SMSSenderService implements ISMSSenderService {
 	}
 
 	@Override
-	public void sendSms(String pinCode, String countryCode, String phoneNumber) {
+	public void sendSms(String pinCode, String countryCode, String phoneNumber, String senderId) {
+
+		System.out.println(pinCode + '-' + countryCode + '-' + phoneNumber + '-' + senderId);
 
 		final Object result = smsApiClient.post()
-				.uri("?environment=2" + "&username=" + userId + "&password=" + pwd + "&sender=" + senderId + "&mobile="
-						+ countryCode + phoneNumber + "&template=" + SystemConstants.SMS_TEMPLATE + "&otp=" + pinCode)
+				.uri("?environment=" + environment + "&username=" + userId + "&password=" + pwd + "&sender=" + senderId
+						+ "&mobile=" + countryCode + phoneNumber + "&template=" + SystemConstants.SMS_TEMPLATE + "&otp="
+						+ pinCode)
 				.header("content-type", "application/json").retrieve().bodyToMono(Object.class).block();
+
+		System.out.println(result.toString());
 
 	}
 

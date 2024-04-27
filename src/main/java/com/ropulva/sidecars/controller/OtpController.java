@@ -31,22 +31,22 @@ public class OtpController {
 
 	@PostMapping("/send/{phoneNumber}")
 	@Operation(summary = "send otp code...")
-	public StandardResponse<String> sendOtp(@RequestParam String countryCode, @PathVariable String phoneNumber,
+	public StandardResponse<String> sendOtp(@PathVariable String phoneNumber, @RequestParam String countryCode,
 			@RequestHeader("appId") String appId) {
-		log.info("Starting {sendOtp}...");
+		log.info("Starting {sendOtp}... to " + countryCode.toString() + phoneNumber + " by " + appId);
 		iOtpService.createOtp(countryCode, phoneNumber, appId);
-		log.info("{sendOtp} Completed ^_^");
-		return new StandardResponse<String>("Otp code sent successfully", HttpStatus.OK.value());
+		log.info("{sendOtp} Completed ^_^ to " + countryCode.toString() + phoneNumber + " by " + appId);
+		return new StandardResponse<String>("Otp code has been sent successfully", HttpStatus.OK.value());
 
 	}
 
 	@PostMapping("/verify/{phoneNumber}")
 	@Operation(summary = "verify otp code...")
-	public StandardResponse<String> verifyOtp(@PathVariable String phoneNumber, @RequestParam String pinCode,
-			@RequestHeader("appId") String appId) {
-		log.info("Starting {verifyOtp}...");
-		iOtpService.verifyOtp(phoneNumber, pinCode, appId);
-		log.info("{verifyOtp} Completed ^_^");
+	public StandardResponse<String> verifyOtp(@PathVariable String phoneNumber, @RequestParam String countryCode,
+			@RequestParam String pinCode, @RequestHeader("appId") String appId) {
+		log.info("Starting {verifyOtp}... from " + countryCode.toString() + phoneNumber + " by " + appId);
+		iOtpService.verifyOtp(countryCode, phoneNumber, pinCode, appId);
+		log.info("{verifyOtp} Completed ^_^ from " + countryCode.toString() + phoneNumber + " by " + appId);
 		return new StandardResponse<String>("Otp code is valid", HttpStatus.OK.value());
 
 	}

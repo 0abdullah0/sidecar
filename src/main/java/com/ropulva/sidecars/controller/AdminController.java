@@ -17,6 +17,7 @@ import com.ropulva.sidecars.utils.response.StandardResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -45,7 +46,7 @@ public class AdminController {
 	@PostMapping(value = "/create_app")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@Operation(summary = "create new ropulva app...")
-	public StandardResponse<String> createApp(@RequestBody RopulvaAppDto appDto) {
+	public StandardResponse<String> createApp(@RequestBody @Valid RopulvaAppDto appDto) {
 		log.info("Starting {createApp}...");
 		iAdminService.createApp(appDto);
 		log.info("{createApp} Completed ^_^");

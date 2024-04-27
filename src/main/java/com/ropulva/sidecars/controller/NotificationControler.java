@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,22 +35,22 @@ public class NotificationControler {
 
 	@PostMapping("/sendAll")
 	@Operation(summary = "send message...")
-	public StandardResponse<String> sendAll(@RequestBody @Valid NotificationMessageDto body)
-			throws FirebaseMessagingException {
-		log.info("Starting {sendAll}...");
+	public StandardResponse<String> sendAll(@RequestBody @Valid NotificationMessageDto body,
+			@RequestHeader("appId") String appId) throws FirebaseMessagingException {
+		log.info("Starting {sendAll}... by " + appId);
 		iNotificationService.sendNotificationToAll(body);
-		log.info("{sendAll} Completed ^_^");
+		log.info("{sendAll} Completed ^_^ by " + appId);
 		return new StandardResponse<String>("Notification sent successfully", HttpStatus.OK.value());
 
 	}
 
 	@PostMapping("/sendGroup")
 	@Operation(summary = "send message...")
-	public StandardResponse<List<String>> sendGroup(@RequestBody @Valid NotificationMessageDto body)
-			throws FirebaseMessagingException {
-		log.info("Starting {sendGroup}...");
+	public StandardResponse<List<String>> sendGroup(@RequestBody @Valid NotificationMessageDto body,
+			@RequestHeader("appId") String appId) throws FirebaseMessagingException {
+		log.info("Starting {sendGroup}... by" + appId);
 		final List<String> ids = iNotificationService.sendNotificationToGroup(body);
-		log.info("{sendGroup} Completed ^_^");
+		log.info("{sendGroup} Completed ^_^ by" + appId);
 		return new StandardResponse<List<String>>(ids, HttpStatus.OK.value());
 
 	}

@@ -4,6 +4,8 @@ import static java.time.temporal.ChronoUnit.MINUTES;
 
 import java.time.LocalTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Service;
 
 import com.ropulva.sidecars.constant.SystemConstants;
@@ -11,20 +13,30 @@ import com.ropulva.sidecars.dto.OtpCodeDto;
 import com.ropulva.sidecars.exception.CustomException;
 import com.ropulva.sidecars.exception.ExpiredOtpException;
 import com.ropulva.sidecars.exception.InvalidOtpException;
+import com.ropulva.sidecars.model.RopulvaApp;
 import com.ropulva.sidecars.repository.OtpRepository;
+import com.ropulva.sidecars.repository.RopulvaAppRepository;
 import com.ropulva.sidecars.service.IOtpService;
 import com.ropulva.sidecars.service.ISMSSenderService;
 import com.ropulva.sidecars.utils.PINRandomGenerator;
+import com.ropulva.sidecars.utils.jobs.SmsSenderTask;
 
 @Service
 public class OtpService implements IOtpService {
 
 	private final OtpRepository otpRepository;
+	private final RopulvaAppRepository ropulvaAppRepository;
 	private final ISMSSenderService smsSenderService;
 
-	OtpService(OtpRepository otpRepository, ISMSSenderService smsSenderService) {
+	private final TaskExecutor taskExecutor;
+
+	@Autowired
+	OtpService(OtpRepository otpRepository, RopulvaAppRepository ropulvaAppRepository,
+			ISMSSenderService smsSenderService, TaskExecutor taskExecutor) {
 		this.otpRepository = otpRepository;
 		this.smsSenderService = smsSenderService;
+		this.ropulvaAppRepository = ropulvaAppRepository;
+		this.taskExecutor = taskExecutor;
 	}
 
 	@Override
@@ -34,9 +46,11 @@ public class OtpService implements IOtpService {
 			PINRandomGenerator pinRandomGenerator = new PINRandomGenerator();
 			String pinCode = pinRandomGenerator.generatePINCode();
 
-			smsSenderService.sendSms(pinCode, countryCode, phoneNumber);
+			RopulvaApp app = ropulvaAppRepository.findById(appId).get();
 
-			otpRepository.save(phoneNumber, appId, pinCode);
+			taskExecutor
+					.execute(new SmsSenderTask(countryCode, phoneNumber, app.getSenderId(), pinCode, smsSenderService));
+			otpRepository.save(countryCode, phoneNumber, appId, pinCode);
 
 		} catch (CustomException e) {
 
@@ -47,10 +61,10 @@ public class OtpService implements IOtpService {
 	}
 
 	@Override
-	public void verifyOtp(String phoneNumber, String pinCode, String appId) {
+	public void verifyOtp(String countryCode, String phoneNumber, String pinCode, String appId) {
 		try {
 
-			final OtpCodeDto otpCodeDto = otpRepository.findOtpById(phoneNumber, appId);
+			final OtpCodeDto otpCodeDto = otpRepository.findOtpById(countryCode, phoneNumber, appId);
 
 			final LocalTime nowTime = LocalTime.now();
 
