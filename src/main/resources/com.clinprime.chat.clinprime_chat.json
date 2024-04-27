@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "clinprime-101",
+  "private_key_id": "98815421045c19b61799d8c63e1a970210aca6ab",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDQUEBMriUjtvog\n6M/PALEegdqGnSwhwqQXZyrtQ9eXNoR+Zn9Z/RdX+djjndoCRBESegzB3kEygLbj\ne0PCS4yyjIK4BsfDcK8Hn9OQp0HPUVUoHooeRQ3VvOHgHQvCT1g0Ceh2Lb2gbQSN\nKaWDQeAAsybPx4olg2uAkIMGRIN0CAvCsIR9E62VYrFlUh1ocOd2vAcgdF+VAdmb\nu57Rtf4QFYK3S+P5fQBBZTBMHafCy/YWIzVmnN70ANaqH2Rw7iL/Le1rlqglU5uD\nIOGSxhU5EkpKb6eD94cDc3dS4SCbejLm6XdvN0PrKAhSYHeWCmFQyiyK/TD4R/IY\nEXCmMOp/AgMBAAECggEAF+v/Vk7xSOasVrcllhn4PQ6gb7EA7meRvHZGgbS2v1Ct\nam6O1WCxG5M/ivQHoxb59us5J9JEHm6Vkg4Hu/o9EAv+vu9YZWM9VlzOSOBMOGiY\npODM76jya8cjET+EqC3AbUlt/pRGIHQkf6l2rloURUBNhrLddG1hHQR7Z27awaot\nysJzi6aAbW8yvWnM6wei1aG5c8WNVMtbBsncFHPb/evdXBW+MB7WJZpJ5aBLcST8\n1JgdA4+wg8qawgNgmSV/HjrVxUE9QcPDxccsSodKWdg3OnnUzRAjnOw3qmE8HqR6\n8pHAxfSPDYABUS9nv6MR7Psjk+MCUb094f+g58x3sQKBgQDwXbujAKFPbgqzh0Bw\nfp6TTRpd7mWZ7YYX9DXIschiCxe/1JqkDo1XzCtFt6wA4IiS0iRImUPhqVTmx9KH\niZFv8dMB6k3VGCuw1K0Aj/Y5Eoknbkuthu0KX0jR8793KuUtEZ56ADNcPhh2Rj7F\nHsR6zBGkGonmZBJXHlHlTiluswKBgQDd3NGP+1KYQRJ1TwzEFWkW9bR39VcNJJGZ\ntyPGQ05m9oFs5XGzGTr1hZtaflPRbBQ+RWRwuZhBaH/EL+s3xm6VIL7bclnzZmCr\nkHynDxJdPAOfiXJwztDo6QUBQszPeSIzYMziGF3gH2J4501owMlZ1DZwY7VpCANG\ngdOVKOe7BQKBgQDeDbnKXEqpln9MWyasxky4yAITxKkYCtZWSsVlIth7usO19DLo\nXIk3EubnAUdliAijmn7qkqyjTEui5/cWP4CcaksE+e/tbObv9YndeyF8mCMcykgf\nhwZ1DpG3Y/b9oCMX/67oBkdsb/EpUruqX0IkL2IcuGes78YBtYDy1cJxAQKBgQCd\nCZP7yfSoeEbMaeurT0xXSAs5bZr0XpIAr7TOvQ1dq9Xocm+MSauF5dAUuZ4yecHK\nYeu6LmQqyADHqPNhQz86pzbwtXwd4LVEOr1AslZZUAVwgyVR29HbSjSUs+esYx1m\nKHpc/spTvWNCGNad8veScbcmziy170oCOhq9VXrQ0QKBgBbn3x0Cz/0Nfqdj/Huz\nCLQTS8fcIyXNBzmDtHS93N4IcSnasnLaWm67Angr8hDkt8+id/cI7QEMxe/XslyX\nR1152z/uVWykpAF2gu4C0fRRqyyL8c2K+VRwKvgJwJc04tTzUwK7eJjClzLZ0h4w\nBz43f4xoEYmOSGlfdA5xzg3X\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-psyqe@clinprime-101.iam.gserviceaccount.com",
+  "client_id": "109272611642040605212",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-psyqe%40clinprime-101.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
