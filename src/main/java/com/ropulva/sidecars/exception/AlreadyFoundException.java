@@ -2,7 +2,7 @@ package com.ropulva.sidecars.exception;
 
 public class AlreadyFoundException extends RuntimeException {
 
-	private static final long serialVersionUID = 10L;
+	private static final long serialVersionUID = 1L;
 
 	public AlreadyFoundException(String message) {
 
